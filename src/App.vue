@@ -4,8 +4,8 @@
     <button @click="animateBlock">Animate</button>
   </div>
   <div class="container">
-    <transition>
-      <p v-if="paraIsVisible">This is sometimes visibile...</p>
+    <transition name="para">
+      <p v-if="paraIsVisible">This is only sometimes visible...</p>
     </transition>
     <button @click="toggleParagraph">Toggle Paragraph</button>
   </div>
@@ -28,17 +28,17 @@ export default {
     };
   },
   methods: {
-    showDialog() {
-      this.dialogIsVisible = true;
-    },
-    hideDialog() {
-      this.dialogIsVisible = false;
-    },
     animateBlock() {
       this.animatedBlock = true;
     },
     toggleParagraph() {
       this.paraIsVisible = !this.paraIsVisible;
+    },
+    showDialog() {
+      this.dialogIsVisible = true;
+    },
+    hideDialog() {
+      this.dialogIsVisible = false;
     }
   }
 };
@@ -86,36 +86,36 @@ button:active {
   border: 2px solid #ccc;
   border-radius: 12px;
 }
-
 .animate {
   /* transform: translateX(-150px); */
   animation: slide-fade 0.3s ease-out forwards;
 }
 
-.v-enter-from {
+.para-enter-from {
   /* opacity: 0;
   transform: translateY(-30px); */
 }
 
-.v-enter-active {
-  transition: slide-scale 0.3s ease-out;
+.para-enter-active {
+  animation: slide-scale 0.3s ease-out;
 }
 
-.v-enter-to {
+.para-enter-to {
   /* opacity: 1;
   transform: translateY(0); */
 }
 
-.v-leave-from {
+.para-leave-from {
   /* opacity: 1;
   transform: translateY(0); */
 }
 
-.v-leave-active {
+.para-leave-active {
   /* transition: all 0.3s ease-in; */
   animation: slide-scale 0.3s ease-out;
 }
-.v-leave-to {
+
+.para-leave-to {
   /* opacity: 0;
   transform: translateY(30px); */
 }
@@ -126,7 +126,7 @@ button:active {
   }
 
   70% {
-    transform: translate(-120x) scale(1.1);
+    transform: translateX(-120px) scale(1.1);
   }
 
   100% {
